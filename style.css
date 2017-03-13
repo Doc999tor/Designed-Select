@@ -1,0 +1,55 @@
+:root {
+	--logo-height: 80px;
+	--header-padding: 1rem;
+}
+
+body {
+	margin: 0;
+	color: #666;
+	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+
+header {
+	display: flex;
+	align-items: center;
+	padding: var(--header-padding);
+}
+header .logo {height: var(--logo-height);}
+header h1 {margin: 0 auto;font-weight: 500;}
+
+main {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-start;
+	height: calc(100vh - (var(--logo-height) + 2 * var(--header-padding)));
+	padding: 1rem;
+	background-color: #eee;
+	box-sizing: border-box;
+	overflow: auto;
+}
+
+.designed-select-container {
+	position: relative;
+	max-height: 1rem;
+	overflow-y: hidden;
+	padding: var(--select-padding);
+	border: 1px solid currentColor;
+	cursor: pointer;
+	transition: max-height var(--transition-length);
+	--transition-length: .8s;
+}
+.designed-select-container:after {
+	content: '\25B2';
+	position: absolute;right: var(--select-padding);top: var(--select-padding);
+	transition: transform var(--transition-length);
+	transform: rotateX(.5turn);
+}
+.designed-select-container.opened {max-height: var(--select-height);}
+.designed-select-container.opened:after {transform: rotateX(0turn);}
+.designed-select-container .designed-select-option {
+	display: block;
+	color: currentColor;
+	transition: opacity var(--transition-length) step-end;
+}
+.designed-select-container .designed-select-option:not(:first-child) {opacity: 0;}
+.designed-select-container.opened .designed-select-option:not(:first-child) {opacity: 1; transition: opacity var(--transition-length) step-start; }
